@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SkalProj_Datastrukturer_Minne
 {
@@ -71,13 +72,34 @@ namespace SkalProj_Datastrukturer_Minne
              * As a default case, tell them to use only + or -
              * Below you can see some inspirational code to begin working.
             */
-
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
+            List<string> theList = new List<string>();
+            string input = Console.ReadLine();
             //char nav = input[0];
-            //string value = input.substring(1);
+            char nav = ' ';
+            string value;
+            bool running = true;
 
-            //switch(nav){...}
+            do
+            {
+                nav = input[0];
+                value = input.Substring(1);
+                switch (nav)
+                {
+                    case '+': //add value to theList
+                        break;
+                    case '-': //remove value to theList
+                        break;
+                    case '0': running=false;//exit to main menu - bool=false
+                        break;
+                    default:
+                        Console.WriteLine("Please enter some valid input (+ or -)");
+                        break;
+                }
+
+            } while (running);
+            
+
+            
         }
 
         /// <summary>
