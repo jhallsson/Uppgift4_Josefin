@@ -5,6 +5,9 @@ namespace SkalProj_Datastrukturer_Minne
 {
     class Program
     {
+        static bool running = true;
+
+
         /// <summary>
         /// The main method, vill handle the menues for the program
         /// </summary>
@@ -71,11 +74,12 @@ namespace SkalProj_Datastrukturer_Minne
         }
         private static bool CheckNull(string inputValue)
         {
-            bool isNull=false;
-            if (string.IsNullOrEmpty(inputValue)) { 
+            bool isNull = false;
+            if (string.IsNullOrEmpty(inputValue))
+            {
                 Console.WriteLine("Please enter some valid input");
                 isNull = true;
-            } 
+            }
 
             return isNull;
         }
@@ -84,22 +88,12 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         static void ExamineList()
         {
-            /*
-             * x Loop this method untill the user inputs something to exit to main menue.
-             * x Create a switch statement with cases '+' and '-'
-             * x '+': Add the rest of the input to the list (The user could write +Adam and "Adam" would be added to the list)
-             * x '-': Remove the rest of the input from the list (The user could write -Adam and "Adam" would be removed from the list)
-             * x ToDo: In both cases, look at the count and capacity of the list
-             * x As a default case, tell them to use only + or -
-             * x Below you can see some inspirational code to begin working.
-            */
-
             List<string> theList = new List<string>{ "one", "two", "three", "four" };
 
             //ToDo: internal? npt when static?
             char nav;
             string value;
-            //bool running = true;
+            
 
             do
             {
@@ -146,16 +140,14 @@ namespace SkalProj_Datastrukturer_Minne
             } while (running);
             running = true;
         }
-        static bool running = true;
+        
         /// <summary>
         /// Examines the datastructure Queue
         /// </summary>
         static void ExamineQueue()
         {
             /*
-             * x Loop this method untill the user inputs something to exit to main menue.
-             * x Create a switch with cases to enqueue items or dequeue items
-             * ToDo: Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
+             ToDo: Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
             var theQueue = new Queue<string>();
             theQueue.Enqueue("one");        //ToDo: Other way?
@@ -165,7 +157,6 @@ namespace SkalProj_Datastrukturer_Minne
             //ToDo: make internal?
             char nav;
             string value;
-            //bool running = true;
             do
             {
                 string input = GetInput("Enter + for enqueue and - for dequeue: ");
@@ -214,11 +205,20 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
-            bool running = true;
-            /*do
+
+            do
             {
                 string input = GetInput("Add value with + or remove with - : ");
-            } while (running);*/
+                if (!CheckNull(input))
+                {
+                    /*nav = input[0];
+                    value = input.Substring(1);
+                    switch (nav)
+                    {
+                    } while (running) ;*/
+                }
+            }
+
         }
 
         static void CheckParanthesis()
