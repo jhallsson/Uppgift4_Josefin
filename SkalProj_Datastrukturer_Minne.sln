@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkalProj_Datastrukturer_Minne", "SkalProj_Datastrukturer_Minne\SkalProj_Datastrukturer_Minne.csproj", "{206D12C7-16E2-4FFE-B27F-4C5616E23A55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkalProj_Datastrukturer_Minne", "SkalProj_Datastrukturer_Minne\SkalProj_Datastrukturer_Minne.csproj", "{206D12C7-16E2-4FFE-B27F-4C5616E23A55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputTest", "InputTest\InputTest.csproj", "{7F65C1B6-9A45-429E-801C-F5045AC870CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{206D12C7-16E2-4FFE-B27F-4C5616E23A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{206D12C7-16E2-4FFE-B27F-4C5616E23A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{206D12C7-16E2-4FFE-B27F-4C5616E23A55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F65C1B6-9A45-429E-801C-F5045AC870CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F65C1B6-9A45-429E-801C-F5045AC870CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F65C1B6-9A45-429E-801C-F5045AC870CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F65C1B6-9A45-429E-801C-F5045AC870CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
