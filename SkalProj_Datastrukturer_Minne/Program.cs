@@ -105,12 +105,6 @@ namespace SkalProj_Datastrukturer_Minne
             {
                 string input = GetInput("Add value with + or remove with - : ");
 
-                //nav = input[0];
-                //CheckString.NullCheck(input);
-                /*if (CheckNull(input))
-                {   //ToDo: make generic/method
-                    Console.WriteLine("Please enter some valid input (+ or -)");
-                }*/
                 if(!CheckNull(input))
                 {
                     nav = input[0];
@@ -118,11 +112,7 @@ namespace SkalProj_Datastrukturer_Minne
                     switch (nav)
                     {
                         case '+':
-                            /*if (string.IsNullOrEmpty(value))
-                            {//ToDo: make generic/method
-                                Console.WriteLine("The input value is empty");
-                            }*/
-                            if (CheckNull(value))
+                            if (!CheckNull(value))
                             {                            //check value?
                                 theList.Add(value);         //add value to theList
                                 Console.WriteLine($"{value} added to the list\n");
@@ -157,8 +147,6 @@ namespace SkalProj_Datastrukturer_Minne
             
         }
 
-        
-
         /// <summary>
         /// Examines the datastructure Queue
         /// </summary>
@@ -166,11 +154,11 @@ namespace SkalProj_Datastrukturer_Minne
         {
             /*
              * x Loop this method untill the user inputs something to exit to main menue.
-             * Create a switch with cases to enqueue items or dequeue items
-             * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
+             * x Create a switch with cases to enqueue items or dequeue items
+             * ToDo: Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
             var theQueue = new Queue<string>();
-            theQueue.Enqueue("one");
+            theQueue.Enqueue("one");        //ToDo: Other way?
             theQueue.Enqueue("two");
             theQueue.Enqueue("three");
 
@@ -181,19 +169,17 @@ namespace SkalProj_Datastrukturer_Minne
             do
             {
                 string input = GetInput("Enter + for enqueue and - for dequeue: ");
-                if (string.IsNullOrEmpty(input))
-                {   //ToDo: make generic
-                    Console.WriteLine("Please enter some valid input");
-                }
-                else
+                if(!CheckNull(input))
                 {
                     nav = input[0];
                     value = input.Substring(1);
                     switch (nav)
                     {
                         case '+':
+                            if (!CheckNull(value)) { 
                             theQueue.Enqueue(value);         
                             Console.WriteLine($"{value} added to the queue\n");
+                            }
                             break;
                         case '-': //ToDo: if queue empty
                             string removedObj=theQueue.Dequeue();     //removes ""and returns"" obj at beginning
@@ -206,7 +192,7 @@ namespace SkalProj_Datastrukturer_Minne
                             Console.WriteLine("Please enter some valid input");
                             break;
                     }
-                }
+                }//ToDo: insert into cases
                 var queueCopy = new string[theQueue.Count]; //Other way? only peek for first value
                 int n= 0;
                 theQueue.CopyTo(queueCopy,n);
