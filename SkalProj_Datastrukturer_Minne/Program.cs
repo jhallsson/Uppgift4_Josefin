@@ -99,7 +99,7 @@ namespace SkalProj_Datastrukturer_Minne
             //ToDo: internal? npt when static?
             char nav;
             string value;
-            bool running = true;
+            //bool running = true;
 
             do
             {
@@ -144,9 +144,9 @@ namespace SkalProj_Datastrukturer_Minne
                 }
                 //theList.ForEach(m => Console.WriteLine($"{m}, ")); //check list
             } while (running);
-            
+            running = true;
         }
-
+        static bool running = true;
         /// <summary>
         /// Examines the datastructure Queue
         /// </summary>
@@ -165,7 +165,7 @@ namespace SkalProj_Datastrukturer_Minne
             //ToDo: make internal?
             char nav;
             string value;
-            bool running = true;
+            //bool running = true;
             do
             {
                 string input = GetInput("Enter + for enqueue and - for dequeue: ");
@@ -201,6 +201,7 @@ namespace SkalProj_Datastrukturer_Minne
                     Console.WriteLine(item);
                 }
             } while (running);
+            running = true;         //reset "global value" until next use
         }
 
         /// <summary>
@@ -214,10 +215,10 @@ namespace SkalProj_Datastrukturer_Minne
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
             bool running = true;
-            do
+            /*do
             {
                 string input = GetInput("Add value with + or remove with - : ");
-            } while (running);
+            } while (running);*/
         }
 
         static void CheckParanthesis()
