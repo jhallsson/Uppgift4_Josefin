@@ -278,24 +278,30 @@ namespace SkalProj_Datastrukturer_Minne
 
             foreach (char c in input)
             {
-                if (c == '(')
+                if (c == '(')   
                 {
-                    stackCheck.Push(c);
+                    stackCheck.Push(c);                         //first bracket pushed
                 }
-                else if (c == ')')
+                else if (c == ')')                              
                 {
-                    if (stackCheck.Count>0)
+                    if (stackCheck.Count>0)                    //there is something in stack
                     {
-                    char right = stackCheck.Pop();
-                    if (right == '(')
+                    char right = stackCheck.Pop();      
+                    if (right == '(')                           //popped is same bracket
                         {
-                            Console.WriteLine("Balanced!");
+                            Console.WriteLine("Balanced!");     //is same type ()
                         }
-                        else Console.WriteLine("Unbalanced.");
+                        else Console.WriteLine("Unbalanced.");  //is not same type (]
                     }
+                    else Console.WriteLine("Unbalanced.");      //there is none in stack
+
                 }
+                else Console.WriteLine("Balanced!");            //no parantheses at all
             }
-            
+            //works for (
+            //ToDo: gather message in end of foreach
+            //ToDo: add { [
+            //ToDo: try different values - test?
 
             //look for first paranthes
             //input.Contains('('); or ('{') or ([)
