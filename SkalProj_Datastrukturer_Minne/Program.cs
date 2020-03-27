@@ -6,6 +6,8 @@ namespace SkalProj_Datastrukturer_Minne
     class Program
     {
         static bool running = true;
+        static char nav;
+        static string value;
 
 
         /// <summary>
@@ -90,11 +92,6 @@ namespace SkalProj_Datastrukturer_Minne
         {
             List<string> theList = new List<string>{ "one", "two", "three", "four" };
 
-            //ToDo: internal? npt when static?
-            char nav;
-            string value;
-            
-
             do
             {
                 string input = GetInput("Add value with + or remove with - : ");
@@ -154,9 +151,6 @@ namespace SkalProj_Datastrukturer_Minne
             theQueue.Enqueue("two");
             theQueue.Enqueue("three");
 
-            //ToDo: make internal?
-            char nav;
-            string value;
             do
             {
                 string input = GetInput("Enter + for enqueue and - for dequeue: ");
@@ -215,9 +209,9 @@ namespace SkalProj_Datastrukturer_Minne
                     value = input.Substring(1);
                     switch (nav)
                     {
-                    } while (running) ;*/
+                    } */
                 }
-            }
+            } while (running);
 
         }
 
