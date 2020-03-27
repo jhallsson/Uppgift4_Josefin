@@ -276,16 +276,65 @@ namespace SkalProj_Datastrukturer_Minne
             //FILO stack takes out first value
             //FIFO queue takes out last value
 
-            var stackCheck = new Stack<string>(); //looks for left
-            var queueCheck = new Queue<string>(); //looks for right
+            var stackCheck = new Stack<char>(); //looks for left
+            var queueCheck = new Queue<char>(); //looks for right
             
+            var leftList = new List<char>();    //SAVES PARANTHESeS
+            var rightList = new List<char>();
 
-            var leftList = new List<string>();    //SAVES PARANTHESeS
-            var rightList = new List<string>();
-
-            string input = GetInput("Enter string with parantheses");
+            string input = GetInput("Enter string with parantheses: ");
             if (!CheckNull(input))
             {
+                
+                foreach( char character in input)
+                {
+                    stackCheck.Push(character);
+                    queueCheck.Enqueue(character);
+                }
+
+                for (int i = 0; i < input.Length; i++)
+                {
+                    char left, right;
+                    left = stackCheck.Pop();
+                    
+                    if (left == '(' || left == '{' || left == '[')
+                    {
+                        leftList.Add(left);
+
+                    }
+                    right = queueCheck.Dequeue();
+                    if (right == ')' || right == '}' || right == ']')
+                    {
+                        rightList.Add(right);
+                    }
+                }
+                Console.WriteLine($"{leftList.Count} {leftList.Count}");
+
+
+
+
+
+                /*foreach (var item in stackCheck)
+                {
+                    if (item == '(' || item == '{' || item == '[')
+                    {
+                        leftList.Add(item);
+                        //Console.WriteLine(leftList[item]);
+                    }
+                    *//*else continue;*//*
+
+                }
+                Console.WriteLine(leftList.Count);
+
+                foreach (var item in queueCheck)
+                {
+                    if (item == ')' || item == '}' || item == ']')
+                    {
+                        rightList.Add(item);
+                    }
+                    //Console.WriteLine(rightList[item]);
+                }*/
+                
                 //for each char in input add to queue and stack
             }
 
