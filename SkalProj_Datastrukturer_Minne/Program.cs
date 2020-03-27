@@ -207,17 +207,13 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         static void ExamineStack()
         {
-            /*
-             * x Loop this method until the user inputs something to exit to main menue.
-             * x Create a switch with cases to push or pop items
-             * Make sure to look at the stack after pushing and and poping to see how it behaves
-            */
             Stack<string> theStack = new Stack<string>();
             theStack.Push("example");
             theStack.Push("example");
             theStack.Push("example");
             theStack.Push("example");
 
+            
 
             do
             {
@@ -276,9 +272,34 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
+            
+            //FILO stack takes out first value
+            //FIFO queue takes out last value
+
+            var stackCheck = new Stack<string>(); //looks for left
+            var queueCheck = new Queue<string>(); //looks for right
+            
+
+            var leftList = new List<string>();    //SAVES PARANTHESeS
+            var rightList = new List<string>();
+
+            string input = GetInput("Enter string with parantheses");
+            if (!CheckNull(input))
+            {
+                //for each char in input add to queue and stack
+            }
+
+            /*char lastChar = input.Last();
+            Console.WriteLine(lastChar);*/
+
+            //look for first paranthes
+            //input.Contains('('); or ('{') or ([)
+            //loop through all? find ALL starting parantheses - stack?
+            //find second
+            //find corresponding  if match remove and next
+
 
         }
-
     }
 }
 
