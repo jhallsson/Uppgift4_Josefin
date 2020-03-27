@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SkalProj_Datastrukturer_Minne
 {
@@ -69,7 +70,7 @@ namespace SkalProj_Datastrukturer_Minne
             return input;
         }
 
-        private static void ListStatus(List<string> collection, string value)
+        private static void ListStatus(List<string> collection/*, string value*/)
         {
             Console.Write($"Count: {collection.Count}\nValues:\n");
             collection.ForEach(m => Console.WriteLine($"{m}")); //check list
@@ -85,13 +86,7 @@ namespace SkalProj_Datastrukturer_Minne
 
             return isNull;
         }
-        private static string[] CopyQueue(Queue<string> theQueue)
-        {
-            var queueCopy = new string[theQueue.Count]; //Other way? can only peek for first value
-            int n = 0;
-            theQueue.CopyTo(queueCopy, n);
-            return queueCopy;
-        }
+        
         /// <summary>
         /// Examines the datastructure List
         /// </summary>
@@ -115,7 +110,7 @@ namespace SkalProj_Datastrukturer_Minne
                                 theList.Add(value);         
                                 Console.WriteLine($"{value} added to the list\n");
                             }
-                            ListStatus(theList, value);
+                            ListStatus(theList/*, value*/); //ToDo: remove unused value
                             break;
                         case '-':
                             if (theList.Contains(value))    //if value exists in the list
@@ -130,7 +125,7 @@ namespace SkalProj_Datastrukturer_Minne
                             //variable = (condition) ? expressionTrue : expressionFalse;
                             //string message = theList.Contains(value) ? $"{value} removed from the list" : $"'{value}' does not exist in the list!";
                             //Console.WriteLine(message);
-                            ListStatus(theList, value);
+                            ListStatus(theList/*, value*/);
                             break;
                         case '0':
                             running = false;            //exit to main menu - bool=false
@@ -150,6 +145,7 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         static void ExamineQueue()
         {
+           // ICollection<string> nnnn = new Queue<string>().ToArray();
             var theQueue = new Queue<string>();
             theQueue.Enqueue("one");        //ToDo: Other way?
             theQueue.Enqueue("two");
@@ -170,20 +166,20 @@ namespace SkalProj_Datastrukturer_Minne
                                 theQueue.Enqueue(value);
                                 Console.WriteLine($"{value} added to the queue\n");
                                 
-                                string[] queueCopy = CopyQueue(theQueue);
+                                string[] queueCopy = theQueue.ToArray();
                                 foreach (var item in queueCopy)
                                 {
                                     Console.WriteLine(item);
                                 }
                             }
                             break;
-                        case '-': //ToDo: if queue empty
+                        case '-': 
                             if (theQueue.Count > 0)
                             {
                                 string removedObj = theQueue.Dequeue();     //removes ""and returns"" obj at beginning
                                 Console.WriteLine($"{removedObj} removed from the queue\n");
                                 
-                                string[] queueCopy = CopyQueue(theQueue);
+                                string[] queueCopy = theQueue.ToArray();
                                 foreach (var item in queueCopy)
                                 {
                                     Console.WriteLine(item);
@@ -212,21 +208,62 @@ namespace SkalProj_Datastrukturer_Minne
         static void ExamineStack()
         {
             /*
-             * Loop this method until the user inputs something to exit to main menue.
-             * Create a switch with cases to push or pop items
+             * x Loop this method until the user inputs something to exit to main menue.
+             * x Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+            Stack<string> theStack = new Stack<string>();
+            theStack.Push("example");
+            theStack.Push("example");
+            theStack.Push("example");
+            theStack.Push("example");
+
 
             do
             {
-                string input = GetInput("Add value with + or remove with - : ");
+                string input = GetInput("push value with + or pop with - : ");
+
                 if (!CheckNull(input))
                 {
-                    /*nav = input[0];
+                    nav = input[0];
                     value = input.Substring(1);
                     switch (nav)
                     {
-                    } */
+                        case '+':
+                            if (!CheckNull(value))
+                            {
+                                theStack.Push(value);
+                                Console.WriteLine($"{value} pushed to the stack");
+                            }
+                            string[] stackCopy = theStack.ToArray();
+                            foreach (var item in stackCopy)
+                            {
+                                Console.WriteLine(item);
+                            }
+                            break;
+                        case '-':                            
+                            if (theStack.Count > 0)
+                            {
+                                string removedObj = theStack.Pop();     //removes ""and returns"" obj at beginning
+                                Console.WriteLine($"{removedObj} removed from the stack\n");
+
+                                stackCopy = theStack.ToArray(); //error: deklarerar två arrays med samma namn                                foreach (var item in stackCopy)
+                                foreach(var item in stackCopy)
+                                {                                       //säger till här men inte i queue? 
+                                    Console.WriteLine(item);
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("There is no element in the stack");
+                            }
+                            break;
+                        case '0': running = false;
+                            break;
+                        default://ToDo: generic method
+                            Console.WriteLine("Please enter some valid input");
+                            break;
+                    }
                 }
             } while (running);
             running = true;
