@@ -272,108 +272,37 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
-            
-            //FILO stack takes out first value
-            //FIFO queue takes out last value
 
-            var stackCheck = new Stack<char>(); //looks for left
-            var queueCheck = new Queue<char>(); //looks for right
-            
-            var leftList = new List<char>();    //SAVES PARANTHESeS
-            var rightList = new List<char>();
+            string input = GetInput("Enter string with parentheses: ");
+            var stackCheck = new Stack<char>();
 
-            string input = GetInput("Enter string with parantheses: ");
-            if (!CheckNull(input))
+            foreach (char c in input)
             {
-                
-                foreach( char character in input)
+                if (c == '(')
                 {
-                    stackCheck.Push(character);
-                    queueCheck.Enqueue(character);
+                    stackCheck.Push(c);
                 }
-
-                for (int i = 0; i < input.Length; i++)
+                else if (c == ')')
                 {
-                    char left, right;
-                    left = stackCheck.Pop();
-
-                    switch (left)
+                    if (stackCheck.Count>0)
                     {
-                        case '(':
-                            right = queueCheck.Dequeue();
-                            if (right== ')')
-                            {
-                                Console.WriteLine("It's a match!");
-                            }
-                            break;
-                        case '[':
-                            right = queueCheck.Dequeue();
-                            if (right == ']')
-                            {
-                                Console.WriteLine("It's a match!");
-                            }
-                            break;
-                        case '{':
-                            right = queueCheck.Dequeue();
-                            if (right == '}')
-                            {
-                                Console.WriteLine("It's a match!");
-                            }
-                            break;
-                        default:
-                            Console.WriteLine("No match:(");
-                            break;
+                    char right = stackCheck.Pop();
+                    if (right == '(')
+                        {
+                            Console.WriteLine("Balanced!");
+                        }
+                        else Console.WriteLine("Unbalanced.");
                     }
-                    /*if (left == '(' || left == '{' || left == '[')
-                    {
-                        leftList.Add(left);
-
-                    }
-                    right = queueCheck.Dequeue();
-                    if (right == ')' || right == '}' || right == ']')
-                    {
-                        rightList.Add(right);
-                    }*/
                 }
-                //Console.WriteLine($"{leftList.Count} {leftList.Count}");
-
-
-
-
-
-
-                /*foreach (var item in stackCheck)
-                {
-                    if (item == '(' || item == '{' || item == '[')
-                    {
-                        leftList.Add(item);
-                        //Console.WriteLine(leftList[item]);
-                    }
-                    *//*else continue;*//*
-
-                }
-                Console.WriteLine(leftList.Count);
-
-                foreach (var item in queueCheck)
-                {
-                    if (item == ')' || item == '}' || item == ']')
-                    {
-                        rightList.Add(item);
-                    }
-                    //Console.WriteLine(rightList[item]);
-                }*/
-                
-                //for each char in input add to queue and stack
             }
-
-            /*char lastChar = input.Last();
-            Console.WriteLine(lastChar);*/
+            
 
             //look for first paranthes
             //input.Contains('('); or ('{') or ([)
             //loop through all? find ALL starting parantheses - stack?
             //find second
             //find corresponding  if match remove and next
+            //balanced / not balanced
 
 
         }
