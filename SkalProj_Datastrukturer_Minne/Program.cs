@@ -296,8 +296,35 @@ namespace SkalProj_Datastrukturer_Minne
                 {
                     char left, right;
                     left = stackCheck.Pop();
-                    
-                    if (left == '(' || left == '{' || left == '[')
+
+                    switch (left)
+                    {
+                        case '(':
+                            right = queueCheck.Dequeue();
+                            if (right== ')')
+                            {
+                                Console.WriteLine("It's a match!");
+                            }
+                            break;
+                        case '[':
+                            right = queueCheck.Dequeue();
+                            if (right == ']')
+                            {
+                                Console.WriteLine("It's a match!");
+                            }
+                            break;
+                        case '{':
+                            right = queueCheck.Dequeue();
+                            if (right == '}')
+                            {
+                                Console.WriteLine("It's a match!");
+                            }
+                            break;
+                        default:
+                            Console.WriteLine("No match:(");
+                            break;
+                    }
+                    /*if (left == '(' || left == '{' || left == '[')
                     {
                         leftList.Add(left);
 
@@ -306,9 +333,10 @@ namespace SkalProj_Datastrukturer_Minne
                     if (right == ')' || right == '}' || right == ']')
                     {
                         rightList.Add(right);
-                    }
+                    }*/
                 }
-                Console.WriteLine($"{leftList.Count} {leftList.Count}");
+                //Console.WriteLine($"{leftList.Count} {leftList.Count}");
+
 
 
 
