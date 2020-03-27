@@ -85,6 +85,13 @@ namespace SkalProj_Datastrukturer_Minne
 
             return isNull;
         }
+        private static string[] CopyQueue(Queue<string> theQueue)
+        {
+            var queueCopy = new string[theQueue.Count]; //Other way? can only peek for first value
+            int n = 0;
+            theQueue.CopyTo(queueCopy, n);
+            return queueCopy;
+        }
         /// <summary>
         /// Examines the datastructure List
         /// </summary>
@@ -104,8 +111,8 @@ namespace SkalProj_Datastrukturer_Minne
                     {
                         case '+':
                             if (!CheckNull(value))
-                            {                            //check value?
-                                theList.Add(value);         //add value to theList
+                            {                            
+                                theList.Add(value);         
                                 Console.WriteLine($"{value} added to the list\n");
                             }
                             ListStatus(theList, value);
@@ -143,9 +150,6 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         static void ExamineQueue()
         {
-            /*
-             ToDo: Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
-            */
             var theQueue = new Queue<string>();
             theQueue.Enqueue("one");        //ToDo: Other way?
             theQueue.Enqueue("two");
@@ -154,36 +158,49 @@ namespace SkalProj_Datastrukturer_Minne
             do
             {
                 string input = GetInput("Enter + for enqueue and - for dequeue: ");
-                if(!CheckNull(input))
+                if (!CheckNull(input))
                 {
                     nav = input[0];
                     value = input.Substring(1);
                     switch (nav)
                     {
                         case '+':
-                            if (!CheckNull(value)) { 
-                            theQueue.Enqueue(value);         
-                            Console.WriteLine($"{value} added to the queue\n");
+                            if (!CheckNull(value))
+                            {
+                                theQueue.Enqueue(value);
+                                Console.WriteLine($"{value} added to the queue\n");
+                                
+                                string[] queueCopy = CopyQueue(theQueue);
+                                foreach (var item in queueCopy)
+                                {
+                                    Console.WriteLine(item);
+                                }
                             }
                             break;
                         case '-': //ToDo: if queue empty
-                            string removedObj=theQueue.Dequeue();     //removes ""and returns"" obj at beginning
-                            Console.WriteLine($"{removedObj} removed from the queue\n");
+                            if (theQueue.Count > 0)
+                            {
+                                string removedObj = theQueue.Dequeue();     //removes ""and returns"" obj at beginning
+                                Console.WriteLine($"{removedObj} removed from the queue\n");
+                                
+                                string[] queueCopy = CopyQueue(theQueue);
+                                foreach (var item in queueCopy)
+                                {
+                                    Console.WriteLine(item);
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("There is no element in the queue");
+                            }
                             break;
                         case '0':
-                            running = false;          
+                            running = false;
                             break;
                         default://ToDo: generic method
                             Console.WriteLine("Please enter some valid input");
                             break;
                     }
-                }//ToDo: insert into cases
-                var queueCopy = new string[theQueue.Count]; //Other way? only peek for first value
-                int n= 0;
-                theQueue.CopyTo(queueCopy,n);
-                foreach (var item in queueCopy)
-                {
-                    Console.WriteLine(item);
                 }
             } while (running);
             running = true;         //reset "global value" until next use
@@ -212,7 +229,7 @@ namespace SkalProj_Datastrukturer_Minne
                     } */
                 }
             } while (running);
-
+            running = true;
         }
 
         static void CheckParanthesis()
