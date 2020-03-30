@@ -213,10 +213,11 @@ namespace Uppgift4_Josefin
         static void ExamineStack()
         {
             Stack<string> theStack = new Stack<string>();
+            /*theStack.Push("example");
             theStack.Push("example");
             theStack.Push("example");
-            theStack.Push("example");
-            theStack.Push("example");
+            theStack.Push("example");*/
+            ReverseText();
 
             do
             {
@@ -267,8 +268,26 @@ namespace Uppgift4_Josefin
             } while (running);
             running = true;
         }
+        private static void ReverseText()
+        {
+            var reverseStack = new Stack<string>();
+            Console.WriteLine("Write a sentence");
+            string input = Console.ReadLine();
 
-        static void CheckParanthesis()
+            var words = input.Split(' ');
+            foreach (var word in words)
+            {
+                reverseStack.Push(word);
+            }
+            var reverse = reverseStack.ToArray();
+            foreach (var item in reverse)
+            {
+                Console.Write($"{item} ");
+            }
+            Console.WriteLine();
+        }
+
+            static void CheckParanthesis()
         {
             
             string message = " ";
@@ -348,6 +367,11 @@ namespace Uppgift4_Josefin
  * .6 när antalet värden är känt från början bör man använda en array eller när man behöver 
  * en multidimensionell kollektion.
  * 
- * Fråga 2.
+ * Fråga 3.1 Stacken tar det sista värdet som las till, medan Queuen använder först in, först ut.
+ * Skulle man använda stacken på ICA skulle Kalle få vänta skitlänge.
+ * 
+ * 
+ * * Kul uppgift men jag vill hela tiden hinna lägga ner mer tid att förbättra!  * *
+ * Hoppas det här är fint nog :)
  */
 
