@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Uppgift4_Josefin
 {
+    //Svar på frågor längst ner
     class Program
     {
         static bool running = true;
@@ -105,9 +106,9 @@ namespace Uppgift4_Josefin
                         case '+':
                             if (!CheckNull(value))
                             {                            
-                                theList.Add(value);         
+                                theList.Add(value);                                
                                 Console.WriteLine($"{value} added to the list\n");
-                            }
+                            }                                                       
                             ListStatus(theList);
                             break;
                         case '-':
@@ -140,11 +141,10 @@ namespace Uppgift4_Josefin
         /// </summary>
         static void ExamineQueue()
         {
-           // ICollection<string> nnnn = new Queue<string>().ToArray();
+            // ICollection<string> nnnn = new Queue<string>().ToArray();
             var theQueue = new Queue<string>();
-            theQueue.Enqueue("one");        //ToDo: Other way?
-            theQueue.Enqueue("two");
-            theQueue.Enqueue("three");
+
+            TestQueue(theQueue);
 
             do
             {
@@ -160,7 +160,7 @@ namespace Uppgift4_Josefin
                             {
                                 theQueue.Enqueue(value);
                                 Console.WriteLine($"{value} added to the queue\n");
-                                
+
                                 string[] queueCopy = theQueue.ToArray();
                                 foreach (var item in queueCopy)
                                 {
@@ -168,12 +168,12 @@ namespace Uppgift4_Josefin
                                 }
                             }
                             break;
-                        case '-': 
+                        case '-':
                             if (theQueue.Count > 0)
                             {
                                 string removedObj = theQueue.Dequeue();     //removes ""and returns"" obj at beginning
                                 Console.WriteLine($"{removedObj} removed from the queue\n");
-                                
+
                                 string[] queueCopy = theQueue.ToArray();
                                 foreach (var item in queueCopy)
                                 {
@@ -195,6 +195,16 @@ namespace Uppgift4_Josefin
                 }
             } while (running);
             running = true;         //reset "global value" until next use
+        }
+
+        private static void TestQueue(Queue<string> theQueue)
+        {
+            theQueue.Enqueue("Kalle");
+            theQueue.Enqueue("Greta");
+            theQueue.Dequeue();
+            theQueue.Enqueue("Stina");
+            theQueue.Dequeue();
+            theQueue.Enqueue("Olle");
         }
 
         /// <summary>
@@ -307,4 +317,37 @@ namespace Uppgift4_Josefin
         }   //ToDo: unittest
     }
 }
+
+/*Fråga 1: Stack och heap är två olika typer av minneshantering. 
+ * Stack funkar som en stapel där sista värdet in, tas ut först, 
+ * för att man sedan ska kunna komma åt nästa i stapeln. Det objekt  
+ * eller den metod som tas fram är sedan förbrukat och tas bort ur minnet.
+ * Minnet rensas självt.
+ * Stack används för value types (int, bool..) 
+ * 
+ * Heap används vid reference types, då det går att ta fram ett objekt 
+ * i vilken ordning som helst. Alla finns tillgänliga samtidigt genom en referens.
+ * Heapen måste dock ha informationen aktuell hela tiden och kan inte
+ * rensa minnet själv. Det kan göra att förbrukade/onödiga värden tar upp 
+ * mycket plats i minnet och bidrar till sk. garbage collection.
+ * 
+ * Fråga 2: En value type håller värdet i sin egen variabel, och tar bara upp sin egen minnesplats.
+ * Skickas en value type kommer den kopieras till den nya platsen, och nya ändringar 
+ * påverkar inte den första variabeln.
+ * Reference type refererar till ett värde någon annanstans i minnet. Flera variablar kan 
+ * hänvisa till samma värde. Skickas en reference type skickas samma adress till värdet i minnet,
+ * så ändringar gäller då alla referenser/variablar som pekar på ett värde.
+ * 
+ * Fråga 3: Första metoden skriver inte över x, utan värdet förblir detsamma y!=x
+ * Andra metoden har två referenser som har samma adress till värdet. Ändras y så ändras också x. y=x
+ * - - -
+ * Fråga 1.2 efter add-metod
+ * .3 ökar fr 4->8 
+ * .4 Kapaciteten visar möjligt antal värden innan list-arrayen måste ändra storlek
+ * .5 nej
+ * .6 när antalet värden är känt från början bör man använda en array eller när man behöver 
+ * en multidimensionell kollektion.
+ * 
+ * Fråga 2.
+ */
 
