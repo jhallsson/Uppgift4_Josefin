@@ -295,9 +295,11 @@ namespace Uppgift4_Josefin
                                     else message = "Unbalanced.";
                                 }
                                 else message = "Unbalanced.";               //there is no pair in stack 
-                            }                                               
-                            else message = "Balanced!";                       //no parantheses at all
+                            }
+                            if (stackCheck.Count > 0) message = "Unbalanced";
+                            //else message = "Balanced!";                       //no parantheses at all
                         }
+                        //stackCheck.Clear();
                         Console.WriteLine(message);
                         break;
                 }

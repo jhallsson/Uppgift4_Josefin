@@ -14,7 +14,7 @@ namespace InputTest
         {
             //Arrange 
             //expected = unbalanced?
-            
+
 
             //Act
             //input="())"
@@ -30,8 +30,11 @@ namespace InputTest
         // (())
         //([])
         //not balanced
-        //())
+        //([)4
+        //[])
+        //())   
         //}}
+        //])[]
         //([]))
         //[(])
     }
