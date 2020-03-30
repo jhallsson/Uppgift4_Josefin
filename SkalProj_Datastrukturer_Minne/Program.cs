@@ -274,30 +274,44 @@ namespace SkalProj_Datastrukturer_Minne
              */
 
             string input = GetInput("Enter string with parentheses: ");
+            string message=" ";
             var stackCheck = new Stack<char>();
-
+            Dictionary<char, char> parantheses = new Dictionary<char, char> { 
+                {'(',')'},
+                {'[',']'},
+                {'{','}'} 
+            };
+            //Console.WriteLine(parantheses['('] + parantheses.TryGetValue);
             foreach (char c in input)
             {
-                if (c == '(')   
+                if (c == '('||c=='['||c=='{')   
                 {
                     stackCheck.Push(c);                         //first bracket pushed
                 }
-                else if (c == ')')                              
+                else if (c == ')' || c == ']' || c == '}')                              
                 {
-                    if (stackCheck.Count>0)                    //there is something in stack
+                    if (stackCheck.Count > 0)                    //there is something in stack
                     {
-                    char right = stackCheck.Pop();      
-                    if (right == '(')                           //popped is same bracket
+                        char key = stackCheck.Pop();          //get key from stack-trygetvalue by key-if value =c - balanced
+                        if (c == parantheses[key])
                         {
-                            Console.WriteLine("Balanced!");     //is same type ()
+                            message = $"{key} {parantheses[key]} Balanced!";
                         }
-                        else Console.WriteLine("Unbalanced.");  //is not same type (]
+                        else message = "Unbalanced.";
+                        /*char left = stackCheck.Pop();
+                        if (left == '(')                       //popped is same bracket
+                        {
+                            message = "Balanced!";              //is same type ()
+                        }
+                        else message = "Unbalanced.";   */        //is not same type (]
                     }
-                    else Console.WriteLine("Unbalanced.");      //there is none in stack
+                    else message = "Unbalanced.";               //there is no pair in stack
 
                 }
-                else Console.WriteLine("Balanced!");            //no parantheses at all
+                else message="Balanced!";                       //no parantheses at all
+                
             }
+            Console.WriteLine(message);
             //works for (
             //ToDo: gather message in end of foreach
             //ToDo: add { [
