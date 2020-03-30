@@ -296,16 +296,15 @@ namespace Uppgift4_Josefin
                                 }
                                 else message = "Unbalanced.";               //there is no pair in stack 
                             }
-                            if (stackCheck.Count > 0) message = "Unbalanced";
-                            //else message = "Balanced!";                       //no parantheses at all
-                        }
-                        //stackCheck.Clear();
+                            
+                            }
+                        message = stackCheck.Count > 0 ? "Unbalanced" : "Balanced!"; //if one bracket is left OR no parantheses at all
                         Console.WriteLine(message);
                         break;
                 }
             } while (running);
             running = true;
-        }   //ToDo: unittest - ???
+        }   //ToDo: unittest
     }
 }
 
