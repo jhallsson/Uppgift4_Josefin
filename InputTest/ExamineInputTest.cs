@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SkalProj_Datastrukturer_Minne;                    //referens fixad, using fixad, vad mer?
+using Uppgift4_Josefin;                    //referens fixad, using fixad, vad mer?
 
 namespace InputTest
 {

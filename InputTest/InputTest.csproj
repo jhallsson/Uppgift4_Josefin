@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SkalProj_Datastrukturer_Minne\SkalProj_Datastrukturer_Minne.csproj" />
+    <ProjectReference Include="..\SkalProj_Datastrukturer_Minne\Uppgift4_Josefin.csproj" />
   </ItemGroup>
 
 </Project>

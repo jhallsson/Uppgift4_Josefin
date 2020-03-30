@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SkalProj_Datastrukturer_Minne
+namespace Uppgift4_Josefin
 {
     class Program
     {
@@ -294,8 +294,8 @@ namespace SkalProj_Datastrukturer_Minne
                                     }
                                     else message = "Unbalanced.";
                                 }
-                                else message = "Unbalanced.";               //there is no pair in stack
-                            }
+                                else message = "Unbalanced.";               //there is no pair in stack 
+                            }                                               
                             else message = "Balanced!";                       //no parantheses at all
                         }
                         Console.WriteLine(message);
