@@ -10,14 +10,12 @@ namespace SkalProj_Datastrukturer_Minne
         static char nav;
         static string value;
 
-
         /// <summary>
         /// The main method, vill handle the menues for the program
         /// </summary>
         /// <param name="args"></param>
         static void Main()
         {
-
             while (true)
             {
                 Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 0) of your choice"
@@ -70,7 +68,7 @@ namespace SkalProj_Datastrukturer_Minne
             return input;
         }
 
-        private static void ListStatus(List<string> collection/*, string value*/)
+        private static void ListStatus(List<string> collection)
         {
             Console.Write($"Count: {collection.Count}\nValues:\n");
             collection.ForEach(m => Console.WriteLine($"{m}")); //check list
@@ -110,7 +108,7 @@ namespace SkalProj_Datastrukturer_Minne
                                 theList.Add(value);         
                                 Console.WriteLine($"{value} added to the list\n");
                             }
-                            ListStatus(theList/*, value*/); //ToDo: remove unused value
+                            ListStatus(theList);
                             break;
                         case '-':
                             if (theList.Contains(value))    //if value exists in the list
@@ -122,10 +120,7 @@ namespace SkalProj_Datastrukturer_Minne
                             {
                                 Console.WriteLine($"'{value}' does not exist in the list!");
                             }
-                            //variable = (condition) ? expressionTrue : expressionFalse;
-                            //string message = theList.Contains(value) ? $"{value} removed from the list" : $"'{value}' does not exist in the list!";
-                            //Console.WriteLine(message);
-                            ListStatus(theList/*, value*/);
+                            ListStatus(theList);
                             break;
                         case '0':
                             running = false;            //exit to main menu - bool=false
@@ -213,8 +208,6 @@ namespace SkalProj_Datastrukturer_Minne
             theStack.Push("example");
             theStack.Push("example");
 
-            
-
             do
             {
                 string input = GetInput("push value with + or pop with - : ");
@@ -267,65 +260,50 @@ namespace SkalProj_Datastrukturer_Minne
 
         static void CheckParanthesis()
         {
-            /*
-             * Use this method to check if the paranthesis in a string is Correct or incorrect.
-             * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
-             * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
-             */
-
-            string input = GetInput("Enter string with parentheses: ");
-            string message=" ";
+            
+            string message = " ";
             var stackCheck = new Stack<char>();
-            Dictionary<char, char> parantheses = new Dictionary<char, char> { 
+            Dictionary<char, char> parantheses = new Dictionary<char, char> {
                 {'(',')'},
                 {'[',']'},
-                {'{','}'} 
+                {'{','}'}
             };
-            //Console.WriteLine(parantheses['('] + parantheses.TryGetValue);
-            foreach (char c in input)
+            do
             {
-                if (c == '('||c=='['||c=='{')   
+                string input = GetInput("Enter string with parentheses: ");
+                switch (input)
                 {
-                    stackCheck.Push(c);                         //first bracket pushed
-                }
-                else if (c == ')' || c == ']' || c == '}')                              
-                {
-                    if (stackCheck.Count > 0)                    //there is something in stack
-                    {
-                        char key = stackCheck.Pop();          //get key from stack-trygetvalue by key-if value =c - balanced
-                        if (c == parantheses[key])
+                    case "0":
+                        running = false;
+                        break;
+                    default:
+                        foreach (char c in input) //move up over switch
                         {
-                            message = $"{key} {parantheses[key]} Balanced!";
+                            if (c == '(' || c == '[' || c == '{')
+                            {
+                                stackCheck.Push(c);                         //first bracket pushed
+                            }
+                            else if (c == ')' || c == ']' || c == '}')
+                            {
+                                if (stackCheck.Count > 0)                    //there is something in stack
+                                {
+                                    char key = stackCheck.Pop();          //get key from stack - trygetvalue by (stack-)key - if value =c - balanced
+                                    if (c == parantheses[key])
+                                    {
+                                        message = "Balanced!";
+                                    }
+                                    else message = "Unbalanced.";
+                                }
+                                else message = "Unbalanced.";               //there is no pair in stack
+                            }
+                            else message = "Balanced!";                       //no parantheses at all
                         }
-                        else message = "Unbalanced.";
-                        /*char left = stackCheck.Pop();
-                        if (left == '(')                       //popped is same bracket
-                        {
-                            message = "Balanced!";              //is same type ()
-                        }
-                        else message = "Unbalanced.";   */        //is not same type (]
-                    }
-                    else message = "Unbalanced.";               //there is no pair in stack
-
+                        Console.WriteLine(message);
+                        break;
                 }
-                else message="Balanced!";                       //no parantheses at all
-                
-            }
-            Console.WriteLine(message);
-            //works for (
-            //ToDo: gather message in end of foreach
-            //ToDo: add { [
-            //ToDo: try different values - test?
-
-            //look for first paranthes
-            //input.Contains('('); or ('{') or ([)
-            //loop through all? find ALL starting parantheses - stack?
-            //find second
-            //find corresponding  if match remove and next
-            //balanced / not balanced
-
-
-        }
+            } while (running);
+            running = true;
+        }   //ToDo: unittest - ???
     }
 }
 
